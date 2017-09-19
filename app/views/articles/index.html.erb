@@ -1,6 +1,11 @@
 <%= link_to "New Article",  new_article_path, class: "btn btn-default btn-lg", id: "new-article-btn" %>
 
-<% @articles.each do |article| %>
+<% if @articles.empty? %>
+  <h1 id="no-articles">
+    No Articles Created
+  </h1>
+<% else %>
+  <% @articles.each do |article| %>
   <div class="well well-lg">
     <div class="article-title">
       <%= link_to article.title, article_path(article) %>
@@ -9,5 +14,7 @@
       <%= truncate(article.body, length: 500) %>
     </div>
   </div>
+<% end %>
+
 
 <% end %>
